@@ -8,6 +8,10 @@ let lastMsg = null;
 
 let currentThumbHeight = 0;
 
+let currentUsableHeight = 0;
+let currentFillerHeight = 0;
+
+
 const defaults = {
   barColor: "#342d41",
   barWidth: 6,
@@ -50,9 +54,7 @@ function applyStyles() {
   wrapper.style.width = settings.barWidth + "px";
 
   bar.style.background = settings.barColor;
-  bar.style.height = `calc(100vh - ${settings.fillerHeight}px)`;
 
-  filler.style.height = settings.fillerHeight + "px";
   filler.style.background = settings.fillerColor;
 
   normalColor = settings.thumbColor;
@@ -163,29 +165,71 @@ function createUI() {
 }
 
 /* ================= POSITION RENDER ================= */
-
 function renderPosition(msg) {
   if (!wrapper || dragging) return;
 
   const { percent, index, total } = msg;
-
   if (total <= 0) return;
 
-  const usableHeight = window.innerHeight - settings.fillerHeight;
-  const thumbHeight = Math.max(settings.minThumb, usableHeight / total);
-  currentThumbHeight = thumbHeight;
+  const viewportHeight = window.innerHeight;
 
+  /* ---------- Usable / Filler Calculation ---------- */
+
+  const TAB_LIMIT = 25;
+  const STEP = 36;
+  const OFFSET = 44;
+
+  let usableHeight;
+  let dynamicFiller;
+
+  if (total >= TAB_LIMIT) {
+    // 25+ tabs → minimal filler
+    dynamicFiller = settings.fillerHeight; // default 40px
+    usableHeight = viewportHeight - dynamicFiller;
+  } else {
+    // Calibrated formula (1–24 tabs)
+    usableHeight = STEP * total + OFFSET;
+
+    // Prevent overflow if viewport is small
+    usableHeight = Math.min(usableHeight, viewportHeight);
+
+    dynamicFiller = viewportHeight - usableHeight;
+  }
+
+  /* ---------- Apply Heights ---------- */
+
+  currentFillerHeight = dynamicFiller;
+  currentUsableHeight = usableHeight;
+
+  filler.style.height = `${dynamicFiller}px`;
+  filler.style.background = settings.fillerColor;
+
+  bar.style.height = `${usableHeight}px`;
+
+  /* ---------- Thumb Sizing ---------- */
+
+  const thumbHeight = Math.max(
+    settings.minThumb,
+    usableHeight / total
+  );
+
+  currentThumbHeight = thumbHeight;
   thumb.style.height = `${thumbHeight}px`;
 
+  /* ---------- Thumb Position ---------- */
+
   const travel = usableHeight - thumbHeight;
-  thumb.style.transform = `translateY(${travel * percent}px)`;
+  const thumbTop = travel * percent;
 
-  // Always display 1-based index
+  thumb.style.transform = `translateY(${thumbTop}px)`;
+
+  /* ---------- Position Display ---------- */
+
   const displayIndex = Number(index) + 1;
-
   posTop.textContent = String(displayIndex);
   posBottom.textContent = String(total);
 }
+
 
 /* ================= DRAG ================= */
 
@@ -227,9 +271,8 @@ function updateDrag(e) {
   const rect = bar.getBoundingClientRect();
   dragPercent = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
 
-  const usableHeight = window.innerHeight - settings.fillerHeight;
   const thumbHeight = currentThumbHeight;
-  const travel = usableHeight - thumbHeight;
+  const travel = currentUsableHeight - thumbHeight;
 
   const thumbTop = travel * dragPercent;
   thumb.style.transform = `translateY(${thumbTop}px)`;
