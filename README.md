@@ -32,6 +32,7 @@ Because of this limitation, behavior is slightly different from a native scrollb
 ## Bottom Filler (40px)
 
 The default 40px space at the bottom is **purely visual**, added to better match Brave’s layout. You can remove it by setting its height to 0px in the popup settings.
+
 ---
 
 ## Installation
