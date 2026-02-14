@@ -1,3 +1,5 @@
+![Preview](screenshot.png)
+
 # Brave Vertical Tabs Scrollbar
 
 A lightweight extension that restores a visual draggable scrollbar for Brave’s Vertical Tabs to quickly jump between tabs.
