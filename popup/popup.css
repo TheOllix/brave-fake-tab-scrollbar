@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: #0f0d14;
+    color: #e7e4ee;
+}
+
+.panel {
+    width: 320px;
+    padding: 14px 14px 12px;
+    background: linear-gradient(180deg, #1b1823, #14111a);
+    border: 1px solid #2a2435;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .45);
+}
+
+h2 {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #f2effa;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 50px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.row:hover {
+    background: rgba(255, 255, 255, .03);
+}
+
+.right-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+
+label {
+    font-size: 12px;
+    color: #b9b4c7;
+}
+
+/* ---------- color + range ---------- */
+
+input[type="color"] {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #2c2638;
+    border-radius: 6px;
+    background: #1a1622;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    height: 4px;
+    width: 104px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #9b7bff;
+    cursor: pointer;
+}
+
+/* ---------- custom number ---------- */
+
+.num {
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+    height: 24px;
+    border: 1px solid #2c2638;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1a1622;
+}
+
+.num input {
+    border: none;
+    background: transparent;
+    color: #e7e4ee;
+    text-align: center;
+    font-size: 12px;
+    outline: none;
+    max-width: 64px;
+}
+
+.num button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: #201c2a;
+    color: #cfc9dd;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.num button:hover {
+    background: #2c2638;
+}
+
+/* ---------- reset ---------- */
+
+button[data-reset] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #cfc9dd;
+    cursor: pointer;
+}
+
+button[data-reset]:hover {
+    color: #b76aff;
+}

@@ -1,0 +1,46 @@
+{
+    "manifest_version": 3,
+    "name": "Brave Fake Vertical Tabs Scrollbar",
+    "version": "1.0.0",
+    "description": "Creates a floating vertical tabs scrollbar overlay.",
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup/popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "scrollbar.css"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "fontawesome/css/*.css",
+                "fontawesome/webfonts/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+  "icons": {
+    "16":  "icons/icon.png",
+    "48":  "icons/icon.png",
+    "128": "icons/icon.png"
+  }
+}

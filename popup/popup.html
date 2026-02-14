@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="panel">
+    <h2>Scrollbar Settings</h2>
+
+    <!-- Scrollbar color -->
+    <div class="row">
+      <label>Scrollbar color</label>
+      <div class="right-controls">
+        <input type="color" id="barColor">
+        <button data-reset="barColor"><i class="fa-solid fa-rotate-left"></i></button>
+      </div>
+    </div>
+
+    <!-- Scrollbar width -->
+    <div class="row">
+      <label>Scrollbar width</label>
+      <div class="right-controls">
+        <div class="num" data-id="barWidth" data-min="2" data-max="30">
+          <button class="dec"><i class="fa-solid fa-caret-left"></i></button>
+          <input type="text" id="barWidth">
+          <button class="inc"><i class="fa-solid fa-caret-right"></i></button>
+        </div>
+        <button data-reset="barWidth"><i class="fa-solid fa-rotate-left"></i></button>
+      </div>
+    </div>
+
+    <!-- Filler height -->
+    <div class="row">
+      <label>Filler height</label>
+      <div class="right-controls">
+        <div class="num" data-id="fillerHeight" data-min="0" data-max="200">
+          <button class="dec"><i class="fa-solid fa-caret-left"></i></button>
+          <input type="text" id="fillerHeight">
+          <button class="inc"><i class="fa-solid fa-caret-right"></i></button>
+        </div>
+        <button data-reset="fillerHeight"><i class="fa-solid fa-rotate-left"></i></button>
+      </div>
+    </div>
+
+    <!-- Filler color -->
+    <div class="row">
+      <label>Filler color</label>
+      <div class="right-controls">
+        <input type="color" id="fillerColor">
+        <button data-reset="fillerColor"><i class="fa-solid fa-rotate-left"></i></button>
+      </div>
+    </div>
+
+    <!-- Thumb color -->
+    <div class="row">
+      <label>Thumb color</label>
+      <div class="right-controls">
+        <input type="color" id="thumbColor">
+        <button data-reset="thumbColor"><i class="fa-solid fa-rotate-left"></i></button>
+      </div>
+    </div>
+
+    <!-- Thumb hover -->
+    <div class="row">
+      <label>Thumb hover</label>
+      <div class="right-controls">
+        <input type="color" id="thumbHoverColor">
+        <button data-reset="thumbHoverColor"><i class="fa-solid fa-rotate-left"></i></button>
+      </div>
+    </div>
+
+    <!-- Min thumb -->
+    <div class="row">
+      <label>Min. thumb height</label>
+      <div class="right-controls">
+        <div class="num" data-id="minThumb" data-min="2" data-max="100">
+          <button class="dec"><i class="fa-solid fa-caret-left"></i></button>
+          <input type="text" id="minThumb">
+          <button class="inc"><i class="fa-solid fa-caret-right"></i></button>
+        </div>
+        <button data-reset="minThumb"><i class="fa-solid fa-rotate-left"></i></button>
+      </div>
+    </div>
+
+    <!-- Label opacity -->
+    <div class="row">
+      <label>Show tab preview</label>
+      <div class="right-controls">
+        <input type="checkbox" id="showPreview">
+
+      </div>
+    </div>
+
+    <!-- Label opacity -->
+    <div class="row">
+      <label>Label opacity</label>
+      <div class="right-controls">
+        <input type="range" id="labelOpacity" min="0" max="1" step="0.05">
+        <button data-reset="labelOpacity"><i class="fa-solid fa-rotate-left"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
